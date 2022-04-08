@@ -1,0 +1,224 @@
+﻿@{
+    ViewData["Title"] = "Filters Guest";
+    Layout = "_Layout";
+}
+
+<form asp-action="DatasetGuest">
+    <div class="form-group">
+        <label>Year: </label>
+        <select name="year">
+            <option value="0">All</option>
+            @foreach (int year in ViewBag.Years)
+            {
+                <option value="@year">@year</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Month: </label>
+        <select name="month">
+            <option value="0">All</option>
+            @foreach (int month in ViewBag.Months)
+            {
+                <option value="@month">@month</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Hour: </label>
+        <select name="hour">
+            <option value="30">All</option>
+            @foreach (int hour in ViewBag.Hours)
+            {
+                <option value="@hour">@hour</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Severity: </label>
+        <select name="severity">
+            <option value="0">All</option>
+            @foreach (int sev in ViewBag.Severities)
+            {
+                <option value="@sev">@sev</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>City: </label>
+        <select name="CITY">
+            <option value="">All</option>
+            @foreach (string city in ViewBag.Cities)
+            {
+                <option value="@city">@city</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>County: </label>
+        <select name="county">
+            <option value="">All</option>
+            @foreach (string count in ViewBag.Counties)
+            {
+                <option value="@count">@count</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Main Road Name: </label>
+        <input type="text" name="road" />
+    </div>
+    <div class="form-group">
+        <label>Work-Zone Related: </label>
+        <select name="work">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pedestrian Involved: </label>
+        <select name="ped">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Bicyclist Involved: </label>
+        <select name="bike">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Motorcycle Involved: </label>
+        <select name="motor">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Improper Restraint: </label>
+        <select name="improper">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Unrestrained: </label>
+        <select name="unrest">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>DUI: </label>
+        <select name="dui">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Intersection Related: </label>
+        <select name="inter">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Wild Animal Related: </label>
+        <select name="wild">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Domestic Animal Related: </label>
+        <select name="dom">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Overturn/Rollover: </label>
+        <select name="over">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Commercial Vehicle Involved: </label>
+        <select name="comm">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Teenage Driver Involved: </label>
+        <select name="teen">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Older Driver Involved: </label>
+        <select name="old">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Night/Dark Conditions: </label>
+        <select name="night">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Single Vehicle: </label>
+        <select name="single">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Distracted Driving: </label>
+        <select name="dist">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Drowsy Driving: </label>
+        <select name="drowsy">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Roadway Departure: </label>
+        <select name="roadway">
+            <option value="2">Either</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Apply Filters</button>
+</form>

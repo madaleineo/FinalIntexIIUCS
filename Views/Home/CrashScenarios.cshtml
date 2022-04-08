@@ -1,0 +1,110 @@
+
+@{
+    ViewData["Title"] = "Crash Scenarios";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+
+@model CrashData
+
+
+<h3>Enter in Crash Info blah:</h3>
+
+
+<div>
+    <form method="post" asp-controller="Home" asp-action="CrashScenarios">
+
+        <p>Please select which city the crash was in:</p>
+        <input type="radio" id="provo" name="city" value="provo">
+        <label for="provo">Provo</label><br>
+        <input type="radio" id="ogden" name="city" value="ogden">
+        <label for="ogden">Odgen</label><br>
+        <input type="radio" id="westJordan" name="city" value="westJordan">
+        <label for="westJordan">West Jordan</label><br />
+        <input type="radio" id="other" name="city" value="other">
+        <label for="other">Other City</label>
+        <br /><br />
+
+        <label asp-for="PEDESTRIAN_INVOLVED_True">Was there a Pedestrian involved?</label>
+        <select asp-for="PEDESTRIAN_INVOLVED_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="BICYCLIST_INVOLVED_True">Was there a bicyclist involved?</label>
+        <select asp-for="BICYCLIST_INVOLVED_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="MOTORCYCLE_INVOLVED_True">Was there a motorcyclist involved?</label>
+        <select asp-for="MOTORCYCLE_INVOLVED_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br /><br />
+
+        <label asp-for="UNRESTRAINED_True">Did anyone who was involved in the accident NOT have a restraint (aka. NOT have a seatbelt)?</label>
+        <select asp-for="UNRESTRAINED_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="IMPROPER_RESTRAINT_True">Was anyone wearing the seatbelt improperly?</label>
+        <select asp-for="IMPROPER_RESTRAINT_True">
+            <option value="0">Yes</option>
+            <option value="1">No</option>
+        </select><br /><br />
+
+        <label asp-for="SINGLE_VEHICLE_True">Was only one vehicle involved?</label>
+        <select asp-for="SINGLE_VEHICLE_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br /><br />
+
+        <label asp-for="DUI_True">Was driver under the influence?</label>
+        <select asp-for="DUI_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="DISTRACTED_DRIVING_True">Was driver distracted?</label>
+        <select asp-for="DISTRACTED_DRIVING_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="DROWSY_DRIVING_True">Was driver drowsy?</label>
+        <select asp-for="DROWSY_DRIVING_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br /><br />
+
+        <label asp-for="INTERSECTION_RELATED_True">Was crash at an intersection?</label>
+        <select asp-for="INTERSECTION_RELATED_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="ROADWAY_DEPARTURE_True">Did the vehicle cross the center-line or otherwise leave the official roadway?</label>
+        <select asp-for="ROADWAY_DEPARTURE_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br />
+
+        <label asp-for="OVERTURN_ROLLOVER_True">Did car rollover?</label>
+        <select asp-for="OVERTURN_ROLLOVER_True">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br /><br />
+
+        <button class="btn btn-primary" type="submit">Submit Scenario</button>
+    </form>
+
+
+
+    <br /><br />
+    <div>
+        <h2>Crash Severity: @ViewBag.Prediction</h2>
+    </div>
+</div>

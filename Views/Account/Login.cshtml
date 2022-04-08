@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@model LoginModel
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Utah Car Safety Login</title>
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gradient-primary">
+    <br /><br />
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row" style="margin: 15px;margin-top: 25px;">
+                            <div class="col-lg-6 d-none d-lg-block" style="margin-top: 10px"><img src="/img/undraw_rocket.svg" /></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome. Login below.</h1>
+                                    </div>
+                                    <div class="text-danger" asp-validation-summary="All"></div>
+                                    <form method="post" asp-controller="Account" asp-action="Login">
+                                        <div class="form-group">
+                                            <label asp-for="Username"></label>
+                                            <input class="form-control form-control-user" asp-for="Username" placeholder="Enter Your Username..." />
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Password"></label>
+                                            <input class="form-control form-control-user" asp-for="Password" type="password" placeholder="Enter Your Password..." />
+                                        </div>
+
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">Log In</button>
+
+                                        <hr>
+
+
+                                        @*<a asp-area="Identity" asp-page="/Account/Login" class="btn btn-google btn-user btn-block">
+                <i class="fab fa-google fa-fw"></i> Login with Google
+            </a>*@
+
+
+
+                                        <input type="hidden" asp-for="ReturnUrl" />
+                                    </form>
+                                    <form id="external-account" method="post" class="form-horizontal" asp-area="Identity" asp-action="/Account/ExternalLogin">
+                                        <div>
+                                            <p>
+                                                <button type="submit" class="btn btn-google btn-user btn-block" name="provider" value="Google" title="Log in using your Google account"><i class="fab fa-google fa-fw"></i> Login with Google</button>
+                                            </p>
+                                        </div>
+                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CnwoJeLsmJJlgnpx7V9iHRjbAq5eHSPG31gb5YAsFT0O0SPU2PZuz6hjEkKB9WO9EiVFrRkuo0DlzOYFiv4-z5PooBaMFN__wo1h6niF7Um8vMbbfsHY3AzLhePN9N3X5P_lIvMMgXZtD1uTICEGsE" />
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" asp-area="Identity" asp-page="/Account/ForgotPassword">Forgot Password?</a>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a class="small" asp-area="Identity" asp-page="/Account/Register">Create an Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <br /><br /><br /><br />
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.min.js"></script>
+
+</body>
+

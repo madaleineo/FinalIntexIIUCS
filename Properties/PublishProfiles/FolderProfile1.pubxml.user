@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\becca\Downloads\WorkingVersion2.0\UtahCarSafety\UtahCarSafety\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2022-04-08T07:12:02.3104147Z;True|2022-04-07T23:00:49.3186545-06:00;True|2022-04-07T22:41:46.2447653-06:00;True|2022-04-07T22:22:06.5609239-06:00;True|2022-04-07T21:57:22.0828779-06:00;True|2022-04-07T21:44:05.1493421-06:00;True|2022-04-07T19:53:27.7338549-06:00;True|2022-04-07T19:49:04.6830848-06:00;False|2022-04-07T19:47:52.1313672-06:00;True|2022-04-07T19:46:02.6465311-06:00;True|2022-04-07T19:39:17.7810695-06:00;True|2022-04-07T19:09:31.8596713-06:00;</History>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,210 @@
+
+@{ ViewData["Title"] = "Crash Detail Page"; }
+
+
+@model Crash
+
+
+<h1 class="h3 mb-0" style="font-size:60px;font-weight:normal; color: #4b71da">CrashID: @Model.CRASH_ID Details</h1>
+<br />
+<!-- Earnings (Monthly) Card Example -->
+<div class="row" =>
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Date and Time
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.CRASH_DATETIME</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            City
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.CITY</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            County
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.COUNTY_NAME</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Route
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.ROUTE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Main Road
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@Model.MAIN_ROAD_NAME</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Milepoint
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.MILEPOINT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Latitude
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.LAT_UTM_Y</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 mb-5">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-sm font-weight-bold text-info text-uppercase mb-1">
+                            Longitude
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.LONG_UTM_X</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-6 mb-5">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-lg font-weight-bold text-danger text-uppercase mb-1">
+                            Important Factors
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.WhatBoolean()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 mb-5">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-lg font-weight-bold text-danger text-uppercase mb-1">
+                            Crash Severity Score
+                        </div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800">@Model.SeverityOutput()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-6 mb-5">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
+                            Crashes with these factors typically generate a severity score of:
+                        </div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800">@ViewBag.Prediction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.prediction2 != "")
+    {
+    <div class="col-xl-6 mb-5">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
+                            What if?
+                        </div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800">@ViewBag.prediction2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

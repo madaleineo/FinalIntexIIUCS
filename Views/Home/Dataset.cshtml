@@ -1,0 +1,336 @@
+@{ ViewData["Title"] = "Dataset";
+                Layout = "_AdminLayout"; }
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<h1>Utah Motor Vehicle Collision Dataset</h1>
+<br />
+<p>Click on the "Crash_Id" to bring up details about the crash.</p>
+<br />
+@model CrashViewModel
+<!-- Content Row -->
+<div class="row">
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+        <!-- Approach -->
+        <div class="card shadow mb-4" style="height: 10rem;">
+            <div class="card-body">
+                <a class="btn btn-secondary btn-block text-justify-right" asp-controller="Home" asp-action="Dataset">Reset Filters</a>
+                <br />
+                <a class="btn btn-secondary btn-block text-justify-right" asp-controller="Home" asp-action="Filters">Advanced Filters</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <!-- RECORDS RETURNED -->
+        <div class="row mt-1">
+            <div class="col-xl-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Records Returned
+                                </div>
+                                <div class="h3 mb-0 font-weight-bold text-gray-800">@ViewBag.Records</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTIVE FILTERS -->
+            <div class="col-xl-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Selected Features
+                                </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                    <p>@ViewBag.ActiveFilters</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Click on <strong>Crash ID</strong> to bring up more details about a specific crash. Click on <strong>Time, Serverity, City,</strong> or <strong>County</strong> to apply more filters. </p>
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <td class="col-sm-2">Crash ID</td>
+            <td class="col-sm-3">
+                <div class="dropdown">
+                    @if (Model.CurrentYear == null)
+                    {
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownYear"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Time
+        </button>}
+    else
+    {
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownYear"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Year - @Model.CurrentYear
+</button>}
+                    <div class="dropdown-menu" aria-labelledby="dropdownYear">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity"
+                           asp-route-county="@Model.CurrentCounty" asp-route-severity="@Model.CurrentSeverity"
+                           asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+                           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+                           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+                           asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+                           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+                           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+                           asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+                           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+                           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+                           asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+                           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">
+                            Reset Filter
+                        </a>
+                        @foreach (int year in ViewBag.Years)
+                        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity"
+               asp-route-county="@Model.CurrentCounty" asp-route-severity="@Model.CurrentSeverity"
+               asp-route-year="@year" asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+               asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+               asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+               asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+               asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+               asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+               asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+               asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+               asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+               asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+               asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@year</a>}
+                    </div>
+                </div>
+            </td>
+            <td class="col-sm-2">
+                <div class="dropdown">
+                    @if (Model.CurrentSeverity == null)
+                    {<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSeverity"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Severity
+                        </button>}
+                    else
+                    {
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSeverity"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Severity - @Model.CurrentSeverity
+        </button>}
+                    <div class="dropdown-menu" aria-labelledby="dropdownSeverity">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity"
+                           asp-route-county="@Model.CurrentCounty" asp-route-year="@Model.CurrentYear"
+                           asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+                           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+                           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+                           asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+                           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+                           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+                           asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+                           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+                           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+                           asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+                           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">
+                            Reset Filter
+                        </a>
+                        @foreach (int sev in ViewBag.Severities)
+                        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity"
+               asp-route-county="@Model.CurrentCounty" asp-route-severity="@sev" asp-route-year="@Model.CurrentYear"
+               asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+               asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+               asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+               asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+               asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+               asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+               asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+               asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+               asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+               asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+               asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@sev</a>}
+                    </div>
+                </div>
+            </td>
+            <td class="col-sm-2">Route</td>
+            <td class="col-sm-3">Main Road</td>
+            <td>
+                <div class="dropdown">
+                    @if (Model.CurrentCity == null)
+                    {<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCity"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            City
+                        </button>}
+                    else
+                    {
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCity" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            City - @Model.CurrentCity
+        </button>}
+                    <div class="dropdown-menu" aria-labelledby="dropdownCity">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Dataset"
+                           asp-route-severity="@Model.CurrentSeverity" asp-route-year="@Model.CurrentYear"
+                           asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+                           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+                           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+                           asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+                           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+                           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+                           asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+                           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+                           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+                           asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+                           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">Reset Filter</a>
+                        @foreach (string city in ViewBag.Cities)
+                        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="Dataset"
+               asp-route-city="@city" asp-route-severity="@Model.CurrentSeverity"
+               asp-route-year="@Model.CurrentYear" asp-route-month="@Model.CurrentMonth"
+               asp-route-hour="@Model.CurrentHour" asp-route-teen="@Model.CurrentTeenage"
+               asp-route-work="@Model.CurrentWorkZone" asp-route-ped="@Model.CurrentPedestrian"
+               asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle"
+               asp-route-improper="@Model.CurrentImproper" asp-route-unrest="@Model.CurrentUnrestrained"
+               asp-route-dui="@Model.CurrentDUI" asp-route-inter="@Model.CurrentIntersection"
+               asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic"
+               asp-route-over="@Model.CurrentOverturn" asp-route-comm="@Model.CurrentCommercial"
+               asp-route-old="@Model.CurrentOlder" asp-route-night="@Model.CurrentNight"
+               asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted"
+               asp-route-drowsy="@Model.CurrentDrowsy" asp-route-roadway="@Model.CurrentRoadway"
+               asp-route-pageNum="1">@city</a>}
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="dropdown">
+                    @if (Model.CurrentCounty == null)
+                    {
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCounty"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            County
+        </button> }
+                    else
+                    {
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCounty"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            County - @Model.CurrentCounty
+        </button>}
+                    <div class="dropdown-menu" aria-labelledby="dropdownCounty">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Dataset"
+                           asp-route-severity="@Model.CurrentSeverity" asp-route-year="@Model.CurrentYear"
+                           asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+                           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+                           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist"
+                           asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+                           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+                           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild"
+                           asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+                           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+                           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle"
+                           asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+                           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">Reset Filter</a>
+                        @foreach (string count in ViewBag.Counties)
+                        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="Dataset"
+               asp-route-severity="@Model.CurrentSeverity" asp-route-county="@count"
+               asp-route-year="@Model.CurrentYear" asp-route-month="@Model.CurrentMonth"
+               asp-route-hour="@Model.CurrentHour" asp-route-teen="@Model.CurrentTeenage"
+               asp-route-work="@Model.CurrentWorkZone" asp-route-ped="@Model.CurrentPedestrian"
+               asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle"
+               asp-route-improper="@Model.CurrentImproper" asp-route-unrest="@Model.CurrentUnrestrained"
+               asp-route-dui="@Model.CurrentDUI" asp-route-inter="@Model.CurrentIntersection"
+               asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic"
+               asp-route-over="@Model.CurrentOverturn" asp-route-comm="@Model.CurrentCommercial"
+               asp-route-old="@Model.CurrentOlder" asp-route-night="@Model.CurrentNight"
+               asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted"
+               asp-route-drowsy="@Model.CurrentDrowsy" asp-route-roadway="@Model.CurrentRoadway"
+               asp-route-pageNum="1">@count</a>}
+                    </div>
+                </div>
+            </td>
+            <td>Notes</td>
+            <td class="col-sm-2">Edit</td>
+            <td class="col-sm-2">Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.Crashes)
+        {
+<tr>
+    <td class="col-sm-2"><a asp-controller="Home" asp-action="CrashDetail" asp-route-crashid="@c.CRASH_ID">@c.CRASH_ID</a></td>
+    <td class="col-sm-3">
+        <a asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity" asp-route-county="@Model.CurrentCounty"
+           asp-route-severity="@Model.CurrentSeverity" asp-route-year="@c.CRASH_DATETIME.Year" asp-route-month="@Model.CurrentMonth"
+           asp-route-hour="@Model.CurrentHour" asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle"
+           asp-route-improper="@Model.CurrentImproper" asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic"
+           asp-route-over="@Model.CurrentOverturn" asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted"
+           asp-route-drowsy="@Model.CurrentDrowsy" asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@c.CRASH_DATETIME</a>
+    </td>
+    <td class="col-sm-2">
+        <a asp-controller="Home" asp-action="Dataset" asp-route-city="@Model.CurrentCity" asp-route-county="@Model.CurrentCounty"
+           asp-route-severity="@c.CRASH_SEVERITY_ID" asp-route-year="@Model.CurrentYear" asp-route-month="@Model.CurrentMonth"
+           asp-route-hour="@Model.CurrentHour" asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone"
+           asp-route-ped="@Model.CurrentPedestrian" asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle"
+           asp-route-improper="@Model.CurrentImproper" asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI"
+           asp-route-inter="@Model.CurrentIntersection" asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic"
+           asp-route-over="@Model.CurrentOverturn" asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder"
+           asp-route-night="@Model.CurrentNight" asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted"
+           asp-route-drowsy="@Model.CurrentDrowsy" asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@c.SeverityOutput()</a>
+    </td>
+    <td class="col-sm-2">@c.ROUTE</td>
+    <td class="col-sm-3">@c.MAIN_ROAD_NAME</td>
+    <td>
+        <a asp-controller="Home" asp-action="Dataset" asp-route-city="@c.CITY" asp-route-severity="@Model.CurrentSeverity"
+           asp-route-year="@Model.CurrentYear" asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone" asp-route-ped="@Model.CurrentPedestrian"
+           asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI" asp-route-inter="@Model.CurrentIntersection"
+           asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder" asp-route-night="@Model.CurrentNight"
+           asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@c.CITY</a>
+    </td>
+    <td>
+        <a asp-controller="Home" asp-action="Dataset" asp-route-severity="@Model.CurrentSeverity" asp-route-county="@c.COUNTY_NAME"
+           asp-route-year="@Model.CurrentYear" asp-route-month="@Model.CurrentMonth" asp-route-hour="@Model.CurrentHour"
+           asp-route-teen="@Model.CurrentTeenage" asp-route-work="@Model.CurrentWorkZone" asp-route-ped="@Model.CurrentPedestrian"
+           asp-route-bike="@Model.CurrentBicyclist" asp-route-motor="@Model.CurrentMotorcycle" asp-route-improper="@Model.CurrentImproper"
+           asp-route-unrest="@Model.CurrentUnrestrained" asp-route-dui="@Model.CurrentDUI" asp-route-inter="@Model.CurrentIntersection"
+           asp-route-wild="@Model.CurrentWild" asp-route-dom="@Model.CurrentDomestic" asp-route-over="@Model.CurrentOverturn"
+           asp-route-comm="@Model.CurrentCommercial" asp-route-old="@Model.CurrentOlder" asp-route-night="@Model.CurrentNight"
+           asp-route-single="@Model.CurrentSingle" asp-route-dist="@Model.CurrentDistracted" asp-route-drowsy="@Model.CurrentDrowsy"
+           asp-route-roadway="@Model.CurrentRoadway" asp-route-pageNum="1">@c.COUNTY_NAME</a>
+    </td>
+    <td>@c.WhatBoolean()</td>
+    <td class="col-sm-2"><a class="btn btn-warning" asp-controller="Home" asp-action="EditCrash" asp-route-crashid="@c.CRASH_ID">Edit</a></td>
+    <td class="col-sm-2"><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteCrash" asp-route-crashid="@c.CRASH_ID">Delete</a></td>
+</tr>}
+    </tbody>
+</table>
+
+<div page-blah="@Model.PageInfo" page-action="Dataset" page-class="btn" page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary" page-classes-enabled="true" page-url-city="@Model.CurrentCity"
+     page-url-severity="@Model.CurrentSeverity" page-url-county="@Model.CurrentCounty" page-url-year="@Model.CurrentYear"
+     page-url-month="@Model.CurrentMonth" page-url-hour="@Model.CurrentHour"
+     page-url-teen="@Model.CurrentTeenage" page-url-work="@Model.CurrentWorkZone" page-url-ped="@Model.CurrentPedestrian"
+     page-url-bike="@Model.CurrentBicyclist" page-url-motor="@Model.CurrentMotorcycle" page-url-improper="@Model.CurrentImproper"
+     page-url-unrest="@Model.CurrentUnrestrained" page-url-dui="@Model.CurrentDUI" page-url-inter="@Model.CurrentIntersection"
+     page-url-wild="@Model.CurrentWild" page-url-dom="@Model.CurrentDomestic" page-url-over="@Model.CurrentOverturn"
+     page-url-comm="@Model.CurrentCommercial" page-url-old="@Model.CurrentOlder" page-url-night="@Model.CurrentNight"
+     page-url-single="@Model.CurrentSingle" page-url-dist="@Model.CurrentDistracted" page-url-drowsy="@Model.CurrentDrowsy"
+     page-url-roadway="@Model.CurrentRoadway" class="btn-group pull-right m-1">
+</div>

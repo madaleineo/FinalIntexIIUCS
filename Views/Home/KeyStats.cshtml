@@ -1,0 +1,279 @@
+﻿@{
+    ViewData["Title"] = "KeyStats";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-600" style="font-size:70px;font-weight:lighter;">Key Stats</h1>
+    </div>
+    <p>These stats were pulled from a database of over 250,000 Utah car crashes from the years 2016 to 2019.</p>
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!-- Approach -->
+            <div class="card shadow mb-4" style="height: 30rem;">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Utah Cities</h6>
+                </div>
+                <div class="card-body">
+                    <p style="color:black">
+                        Which cities have had the most accidents?
+                    </p>
+                    <p>
+                        Most accidents happen outside of city limits, but Salt Lake City (19601) and West Valley (19601) are the cities with most accidents.
+                    </p>
+                    <p style="color:black">
+                        Which cities have had the most fatal accidents?
+                    </p>
+                    <p>
+                        West Valley (54) has had more fatal accidents than any other city, including Salt Lake City (47).
+                    </p>
+                    <p style="color:black">
+                        Which city has had the most DUI related accidents?
+                    </p>
+                    <p>
+                        Salt Lake City (912) has had the most DUI related accidents. West Valley (602), Ogden (322), West Jordan (286), Sandy (274), and Murray (271) also had very high DUI related accidents.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!-- Approach -->
+            <div class="card shadow mb-4" style="height: 30rem;">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Time</h6>
+                </div>
+                <div class="card-body">
+                    <p style="color:black">
+                        Which year has had the most accidents (since 2016)?
+                    </p>
+                    <p>
+                        The year 2019 was the year with the most accidents (65207). 2017 had the second most at 62855.
+                    </p>
+                    <p style="color:black">
+                        Which day of the week typically has the most accidents?
+                    </p>
+                    <p>
+                        Most accidents happen on Tuesday and Wednesday. Friday is when the most fatal accidents occured (177).
+                    </p>
+                    <p style="color:black">
+                        What time during the day do most accidents happen?
+                    </p>
+                    <p>
+                        3PM (24776), 4PM (21016), and 5PM (19343) are the hours when the most accidents occur. The most fatal crashes happened around 3PM (76). Be careful during rush hour!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+
+            <!-- Fatal Utah Crashes -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Causes of Fatal Utah Crashes</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">
+                        Distraction Related <span class="float-right">7.3%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 7.3%"
+                                aria-valuenow="7.3" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Drowsy Driving <span class="float-right">4.4%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 4.4%"
+                                aria-valuenow="4.4" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Driving under the Influence (DUI) <span class="float-right">32.6%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar" role="progressbar" style="width: 32.6%"
+                                aria-valuenow="32.6" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    @*<h4 class="small font-weight-bold">
+                        Teenage Driver Involved <span class="float-right">11.6%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 11.6%"
+                                aria-valuenow="11.6" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Scooter/Skater Involved <span class="float-right">23%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 23%"
+                                aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Pedestrian Involved <span class="float-right">16%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 16%"
+                                aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Older Driver Involved <span class="float-right">26.4%</span>
+                    </h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 26.4%"
+                                aria-valuenow="26.4" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>*@
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Seatbelt Usage of Fatal Utah Crashes</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">
+                         Seatbelt<span class="float-right">68.7%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 68.7%"
+                                aria-valuenow="68.7" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Improper Seatbelt <span class="float-right">4.1%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 4.1%"
+                                aria-valuenow="4.1" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        No Seatbelt <span class="float-right">27.2%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 27.1%"
+                                aria-valuenow="27.1" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <!-- All Utah Crashes -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Dangerous Demographics for Crashes</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">
+                        Teenage Driver Involved <span class="float-right">20.9%</span>
+                    </h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20.9%"
+                             aria-valuenow="20.9" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">
+                        Older Driver Involved <span class="float-right">13.4%</span>
+                    </h4>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 13.4%"
+                             aria-valuenow="13.4" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="row mt-5"=>
+                <div class="col-xl-6 mb-5">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Most Dangerous Utah Road
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">I-15</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-road fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 mb-5">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Most Dangerous Holiday
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Christmas</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-tree fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Most Fatal Crash DOW
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Friday</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar-week fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Months with Highest Number of Crashes
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Dec - Jan</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<!-- End of Main Content -->

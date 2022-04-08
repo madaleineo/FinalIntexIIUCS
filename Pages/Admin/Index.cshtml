@@ -1,0 +1,66 @@
+﻿@page "/admin"
+@{
+    ViewData["Title"] = "Admin";
+}
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@model UtahCarSafety.Pages.Admin.IndexModel
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Utah Car Safety Admin</title>
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <base href="/" />
+
+</head>
+
+<body>
+    <h1 class="h3 mb-0 text-gray-600" style="font-size:75px;font-weight:lighter;">ADMINISTRATOR MENU</h1>
+    <br />
+    @*<component type="typeof(Routed)" render-mode="Server" />
+        <script src="/_framework/blazor.server.js"></script>*@
+    <div class="container-fluid">
+
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+                <!-- Illustrations -->
+                <div class="card shadow mb-4" style="text-align: center">
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;height: 20rem;"
+                                 src="img/undraw_data_re_80ws.svg" alt="...">
+                        </div>
+                        <a class="btn btn-primary btn-block" asp-controller="Home" asp-action="Dataset">View Dataset</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <!-- Illustrations -->
+                <div class="card shadow mb-4 style=" text-align: center"">
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;height: 20rem;"
+                                 src="img/undraw_town_r-6-pc.svg" alt="...">
+                        </div>
+                        <a class="btn btn-primary btn-block" asp-controller="Home" asp-action="AddCrash">Add Crash</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</body>
+
+</html>

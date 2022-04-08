@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Delete Confirmation Page";
+    Layout = "_AdminLayout";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@model Crash
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<h2>Are you sure you want to delete record @Model.CRASH_ID?</h2>
+<br />
+
+<form method="post" asp-action="DeleteCrash">
+    <input type="hidden" asp-for="CRASH_ID" />
+    <button type="submit" class="btn btn-danger">Delete Forever</button>
+    <a class="btn btn-primary" asp-action="Dataset">Yeet, Nevermind</a>
+</form>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
